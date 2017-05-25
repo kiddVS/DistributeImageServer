@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MyImageServerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ImageInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ImageName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ImageServerId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ImageServerInfo" Relationship="Self.FK_ImageInfo_ImageServerInfo" FromRole="ImageInfo" ToRole="ImageServerInfo" />
+  </EntityType>
+  <EntityType Name="ImageServerInfo">
+    <Key>
+      <PropertyRef Name="ServerId" />
+    </Key>
+    <Property Name="ServerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ServerName" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ServerUrl" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PicRootPath" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MaxPicAmount" Type="Int32" Nullable="false" />
+    <Property Name="CurPicAmount" Type="Int32" Nullable="false" />
+    <Property Name="FlgUsable" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="ImageInfo" Relationship="Self.FK_ImageInfo_ImageServerInfo" FromRole="ImageServerInfo" ToRole="ImageInfo" />
+  </EntityType>
+  <Association Name="FK_ImageInfo_ImageServerInfo">
+    <End Role="ImageServerInfo" Type="Self.ImageServerInfo" Multiplicity="1" />
+    <End Role="ImageInfo" Type="Self.ImageInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ImageServerInfo">
+        <PropertyRef Name="ServerId" />
+      </Principal>
+      <Dependent Role="ImageInfo">
+        <PropertyRef Name="ImageServerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MyImageServerEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ImageInfo" EntityType="Self.ImageInfo" />
+    <EntitySet Name="ImageServerInfo" EntityType="Self.ImageServerInfo" />
+    <AssociationSet Name="FK_ImageInfo_ImageServerInfo" Association="Self.FK_ImageInfo_ImageServerInfo">
+      <End Role="ImageServerInfo" EntitySet="ImageServerInfo" />
+      <End Role="ImageInfo" EntitySet="ImageInfo" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

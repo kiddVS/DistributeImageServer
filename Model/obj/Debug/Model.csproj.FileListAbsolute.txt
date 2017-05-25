@@ -1,0 +1,11 @@
+c:\users\chang\documents\visual studio 2017\Projects\WebServer\Model\bin\Debug\Model.dll.config
+c:\users\chang\documents\visual studio 2017\Projects\WebServer\Model\bin\Debug\Model.dll
+c:\users\chang\documents\visual studio 2017\Projects\WebServer\Model\bin\Debug\Model.pdb
+c:\users\chang\documents\visual studio 2017\Projects\WebServer\Model\bin\Debug\EntityFramework.dll
+c:\users\chang\documents\visual studio 2017\Projects\WebServer\Model\bin\Debug\EntityFramework.SqlServer.dll
+c:\users\chang\documents\visual studio 2017\Projects\WebServer\Model\bin\Debug\EntityFramework.xml
+c:\users\chang\documents\visual studio 2017\Projects\WebServer\Model\bin\Debug\EntityFramework.SqlServer.xml
+c:\users\chang\documents\visual studio 2017\Projects\WebServer\Model\bin\Debug\zh-Hans\EntityFramework.resources.dll
+c:\users\chang\documents\visual studio 2017\Projects\WebServer\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
+c:\users\chang\documents\visual studio 2017\Projects\WebServer\Model\obj\Debug\Model.dll
+c:\users\chang\documents\visual studio 2017\Projects\WebServer\Model\obj\Debug\Model.pdb

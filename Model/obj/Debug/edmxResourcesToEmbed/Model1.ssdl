@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MyImageServerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ImageInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ImageName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ImageServerId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ImageServerInfo">
+    <Key>
+      <PropertyRef Name="ServerId" />
+    </Key>
+    <Property Name="ServerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ServerName" Type="nvarchar" MaxLength="32" Nullable="false" />
+    <Property Name="ServerUrl" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="PicRootPath" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="MaxPicAmount" Type="int" Nullable="false" />
+    <Property Name="CurPicAmount" Type="int" Nullable="false" />
+    <Property Name="FlgUsable" Type="bit" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_ImageInfo_ImageServerInfo">
+    <End Role="ImageServerInfo" Type="Self.ImageServerInfo" Multiplicity="1" />
+    <End Role="ImageInfo" Type="Self.ImageInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ImageServerInfo">
+        <PropertyRef Name="ServerId" />
+      </Principal>
+      <Dependent Role="ImageInfo">
+        <PropertyRef Name="ImageServerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MyImageServerModelStoreContainer">
+    <EntitySet Name="ImageInfo" EntityType="Self.ImageInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ImageServerInfo" EntityType="Self.ImageServerInfo" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_ImageInfo_ImageServerInfo" Association="Self.FK_ImageInfo_ImageServerInfo">
+      <End Role="ImageServerInfo" EntitySet="ImageServerInfo" />
+      <End Role="ImageInfo" EntitySet="ImageInfo" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
